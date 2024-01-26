@@ -8,19 +8,17 @@ import GameSetup from "./components/GameSetup/GameSetup";
 
 
 function App() {
-    const [players, setPlayers] = useState(1)
+    const [players, setPlayers] = useState(0)
     const [grid, setGrid] = useState(3)
     const [isGameSet, setIsGameSet] = useState(false)
-    const [isPlayersSelected , setIsPlayersSelected] = useState(false)
 
     return (
         <>
             <Header players={players}/>
-            <SubHeader/>
+            <SubHeader players={players}/>
             {isGameSet ? <PlayArea grid={grid}/> : <GameSetup setPlayers={setPlayers}
-                                                              players={players}
-                                                              setIsPlayersSelected={setIsPlayersSelected}
-                                                              setGrid={setGrid}/>}
+                                                              setGrid={setGrid}
+                                                              setIsGameSet={setIsGameSet}/>}
             <Footer/>
         </>
     )

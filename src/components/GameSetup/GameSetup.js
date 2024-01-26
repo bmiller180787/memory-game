@@ -1,13 +1,15 @@
-const GameSetup = ({setPlayers, players , setIsPlayersSelected , setGrid}) => {
+import SetPlayers from "../SetPlayers/SetPlayers";
+import SetGrid from "../SetGrid/SetGrid";
+
+const GameSetup = ({setPlayers, players, setGrid}) => {
+
     return (
-        <div>
-            <p>How many Players?</p>
-            <button onClick={()=>setPlayers(1)}>1</button>
-            <button onClick={()=>setPlayers(2)}>2</button>
-            <button onClick={()=>setPlayers(3)}>3</button>
-            <button onClick={()=>setPlayers(4)}>4</button>
-            <p>{players} selected</p>
-        </div>
+        <>
+            {players < 1 ? <SetPlayers setPlayers={setPlayers}
+                                             players={players}/> :
+                <SetGrid/>
+            }
+        </>
     )
 }
 

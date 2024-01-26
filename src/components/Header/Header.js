@@ -1,7 +1,9 @@
+import './Header.css'
+
 const Header = ({players}) => {
     return(
         <div>
-            <h1>Memory Game</h1>
+            <h1 className="header">Memory Game</h1>
         </div>
     )
 }
