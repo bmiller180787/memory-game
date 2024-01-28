@@ -1,8 +1,10 @@
+import "./Footer.css"
+
 const Footer = () => {
     return (
-        <>
-            <p>This is the footer</p>
-        </>
+        <div className="footer">
+            <p className="footertext"> created by bmiller180787</p>
+        </div>
     )
 }
 

@@ -5,9 +5,10 @@ const GameSetup = ({setPlayers, players, setGrid}) => {
 
     return (
         <>
-            {players < 1 ? <SetPlayers setPlayers={setPlayers}
-                                             players={players}/> :
-                <SetGrid/>
+            {
+                players < 1 ? <SetPlayers setPlayers={setPlayers}
+                                          players={players}/> :
+                    <SetGrid setGrid={setGrid}/>
             }
         </>
     )

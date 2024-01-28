@@ -18,7 +18,8 @@ function App() {
             <SubHeader players={players}/>
             {isGameSet ? <PlayArea grid={grid}/> : <GameSetup setPlayers={setPlayers}
                                                               setGrid={setGrid}
-                                                              setIsGameSet={setIsGameSet}/>}
+                                                              setIsGameSet={setIsGameSet}
+                                                              players={players}/>}
             <Footer/>
         </>
     )

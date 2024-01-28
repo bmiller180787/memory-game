@@ -1,4 +1,4 @@
-const SetGrid = () => {
+const SetGrid = ({setGrid}) => {
     return (
         <>
             <p>Select size of Grid</p>
