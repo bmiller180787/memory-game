@@ -1,10 +1,13 @@
 import './SubHeader.css'
 
-const SubHeader = ({players}) => {
+const SubHeader = ({players, grid}) => {
     return (
         <>
-            {players > 1 ? <p className="subheadertext">{players} players selected</p> :
-                <p className="subheadertext">Please Select number of players</p>}
+            {players < 1 && grid < 1 ? <p className="subHeaderText">Please select players</p> :
+                <p></p>}
+            {players > 0 && grid < 1 ? <p className="subHeaderText">Please select grid size</p> :
+                <p></p>}
+            {players > 0 && grid > 1 ? <p></p> : <p></p>}
         </>
     )
 }
