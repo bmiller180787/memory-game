@@ -10,6 +10,14 @@ function App() {
     const [players, setPlayers] = useState(0)
     const [grid, setGrid] = useState(0)
     const [isGameSet, setIsGameSet] = useState(false)
+    const [playerNames, setPlayerNames] = useState([])
+
+  /* come back to work out how to input names for players
+  const handleNameChange = (index, name) => {
+        const updatedNames = [...playerNames];
+        updatedNames[index] = name;
+        setPlayerNames(updatedNames);
+    }*/
 
     return (
         <>
