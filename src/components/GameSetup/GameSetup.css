@@ -1,0 +1,53 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.setupSelection button {
+    height: 4rem;
+    width: 4rem;
+    border: 0.1rem solid #000000;
+    border-radius: 0.25rem;
+    box-shadow: 0.2rem 0.2rem #8c8c8c;
+    font-size: 1.3rem;
+}
+
+.setupSelection {
+    margin: 0 auto;
+    display: grid;
+    gap: 0.5rem;
+    width: 80%;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (min-width: 300px) {
+    .setupSelection button {
+        height: 5rem;
+        width: 5rem;
+        font-size: 1.6rem;
+    }
+
+    .setupSelection {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .setupSelection button {
+        height: 5.5rem;
+        width: 5.5rem;
+        font-size: 1.8rem;
+    }
+
+    .setupSelection {
+        display: flex;
+        width: 65%;
+        justify-content: space-between;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .setupSelection {
+        width: 50%;
+    }
+}

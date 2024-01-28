@@ -8,7 +8,7 @@ import GameSetup from "./components/GameSetup/GameSetup";
 
 function App() {
     const [players, setPlayers] = useState(0)
-    const [grid, setGrid] = useState("")
+    const [grid, setGrid] = useState(0)
     const [isGameSet, setIsGameSet] = useState(false)
 
     return (
