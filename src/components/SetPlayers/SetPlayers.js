@@ -1,4 +1,4 @@
-const SetPlayers = ({setPlayers, players}) => {
+const SetPlayers = ({setPlayers}) => {
     return (
         <div className="setupSelection">
             <button onClick={()=>setPlayers(1)}>1</button>

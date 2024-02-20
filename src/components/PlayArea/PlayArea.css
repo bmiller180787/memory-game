@@ -1,0 +1,19 @@
+img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.playingGrid {
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.3rem;
+}
+
+.tile {
+    width: 50%;
+    cursor: pointer;
+    border: red solid 0.15rem;
+}

@@ -5,7 +5,7 @@ const SubHeader = ({players, grid}) => {
         <>
             {players < 1 && grid < 1 ? <p className="subHeaderText">Please select players</p> :
                 <p></p>}
-            {players > 0 && grid < 1 ? <p className="subHeaderText">Please select grid size</p> :
+            {players > 0 && grid < 1 ? <p className="subHeaderText">Please select number of tiles</p> :
                 <p></p>}
             {players > 0 && grid > 1 ? <p></p> : <p></p>}
         </>

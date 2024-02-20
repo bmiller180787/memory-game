@@ -1,10 +1,18 @@
-const PlayArea = ({grid}) => {
+import "./PlayArea.css"
 
-
+const PlayArea = ({gridArray}) => {
 
     return (
         <>
-            <p>This is the play area</p>
+            <div className="playingGrid">
+            {gridArray.map((tile, key) => {
+                return (
+                    <div key={key} className="tile">
+                        <p>{tile.name}</p>
+                    </div>
+                )
+            })}
+            </div>
         </>
     )
 }
