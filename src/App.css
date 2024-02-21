@@ -1,7 +1,13 @@
-button {
-    cursor: pointer;
-}
-
 *, *::before, *::after {
     box-sizing: border-box;
+}
+
+body {
+    background-color: #E6FAFF;
+}
+
+button {
+    cursor: pointer;
+    background-color: #002966;
+    color: #FFFFFF;
 }

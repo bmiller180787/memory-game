@@ -1,5 +1,7 @@
 .subHeaderText {
-    color: chartreuse;
+    color: #4D4DFF;
     font-size: 2rem;
     text-align: center;
+    font-family: "PT Sans", sans-serif;
+    margin: 2rem;
 }

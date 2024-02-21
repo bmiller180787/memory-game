@@ -5,14 +5,14 @@
 .setupSelection button {
     height: 4rem;
     width: 4rem;
-    border: 0.1rem solid #000000;
+    border: 0.1rem solid #8C8C8C;
     border-radius: 0.25rem;
-    box-shadow: 0.2rem 0.2rem #8c8c8c;
+    box-shadow: 0.2rem 0.2rem #8C8C8C;
     font-size: 1.3rem;
 }
 
 .setupSelection {
-    margin: 0 auto;
+    margin: 1rem auto;
     display: grid;
     gap: 0.5rem;
     width: 80%;

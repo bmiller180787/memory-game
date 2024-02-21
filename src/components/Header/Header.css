@@ -1,5 +1,7 @@
 .header {
     text-align: center;
-    font-size: 5rem;
-    color: cyan;
+    font-size: 4.5rem;
+    color: #4D4DFF;
+    font-family: "PT Sans", sans-serif;
+    margin: 2rem;
 }

@@ -5,6 +5,7 @@ import Footer from "./components/Footer/Footer";
 import PlayArea from "./components/PlayArea/PlayArea";
 import SubHeader from "./components/SubHeader/SubHeader";
 import GameSetup from "./components/GameSetup/GameSetup";
+import PlaySubHeader from "./components/PlaySubHeader/PlaySubHeader";
 
 function shufflePlayTiles(doublePlayTiles) {
     let a = [...doublePlayTiles]
@@ -27,6 +28,8 @@ function App() {
     const [grid, setGrid] = useState(0)
     const [isGameSet, setIsGameSet] = useState(false)
     const [gridArray, setGridArray] = useState([])
+    const [pointProcessing, setPointProcessing] = useState([])
+    const [playerScore, setPlayerScore] = useState([])
 
     const playTiles = [
         {name: 1, value: 1},
@@ -62,7 +65,7 @@ function App() {
     return (
         <>
             <Header players={players}/>
-            <SubHeader players={players} grid={grid}/>
+            {!isGameSet ? <SubHeader players={players} grid={grid}/> : <PlaySubHeader />}
             {isGameSet ? <PlayArea gridArray={gridArray}/> : <GameSetup setPlayers={setPlayers}
                                                                                     setGrid={setGrid}
                                                                                     grid={grid}
