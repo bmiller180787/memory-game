@@ -29,6 +29,7 @@ function App() {
     const [isGameSet, setIsGameSet] = useState(false)
     const [gridArray, setGridArray] = useState([])
     const [pointProcessing, setPointProcessing] = useState([])
+    const [turnProcessing, setTurnProcessing] = useState([])
     const [playerScore, setPlayerScore] = useState([])
 
     const playTiles = [
@@ -59,12 +60,21 @@ function App() {
     }, [grid, players])
 
     useEffect(() => {
+        for (let i = 1; i <= players; i++) {
+            setPlayerScore(prevPlayerScore => [
+                ...prevPlayerScore,
+                { [`player${i}`]: 0 }
+            ])
+        }
+    }, [players])
+
+    useEffect(() => {
         setGridArray(shufflePlayTiles(doublePlayTiles))
     }, [grid])
 
     return (
         <>
-            <Header players={players}/>
+            <Header />
             {!isGameSet ? <SubHeader players={players} grid={grid}/> : <PlaySubHeader />}
             {isGameSet ? <PlayArea gridArray={gridArray}/> : <GameSetup setPlayers={setPlayers}
                                                                                     setGrid={setGrid}

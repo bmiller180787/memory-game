@@ -1,6 +1,6 @@
 import './Header.css'
 
-const Header = ({players}) => {
+const Header = () => {
     return(
         <div>
             <h1 className="header">Memory Game</h1>
