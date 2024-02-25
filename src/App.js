@@ -41,8 +41,9 @@ function App() {
         for (let i = 1; i <= players; i++) {
             setPlayerControl(x => [
                 ...x,
-                {[`Player ${i}`]: 0 , score: 0, turn : 0}
-            ])
+                {
+                    [`player${i}`]: {score: 0, turn: 0}
+                }])
         }
     }, [players])
 
@@ -74,7 +75,8 @@ function App() {
             <Header/>
             {!isGameSet ? <SubHeader players={players} grid={grid}/> : <PlaySubHeader playerControl={playerControl}/>}
             {isGameSet ? <PlayArea gridArray={gridArray}
-                                   setPlayerControl={setPlayerControl}/>
+                                   setPlayerControl={setPlayerControl}
+                                   playerControl={playerControl}/>
                 : <GameSetup setPlayers={setPlayers}
                              setGrid={setGrid}
                              grid={grid}

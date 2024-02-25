@@ -1,6 +1,6 @@
 import "./PlayArea.css"
 
-const PlayArea = ({gridArray, pointProcessing, turnProcessing, setPointProcessing, setTurnProcessing}) => {
+const PlayArea = ({gridArray, setPlayerControl, playerControl}) => {
 
     function handleClick() {
 
@@ -11,7 +11,7 @@ const PlayArea = ({gridArray, pointProcessing, turnProcessing, setPointProcessin
             <div className="playingGrid">
                 {gridArray.map((tile, key) => {
                     return (
-                        <div onClick={handleClick} key={key} className="tile">
+                        <div onClick={handleClick} key={key} className="tile" value={tile.value}>
                             <p>{tile.name}</p>
                         </div>
                     )
