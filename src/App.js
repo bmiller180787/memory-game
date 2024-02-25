@@ -30,6 +30,7 @@ function App() {
     const [isGameSet, setIsGameSet] = useState(false)
     const [gridArray, setGridArray] = useState([])
     const [playerControl, setPlayerControl] = useState([])
+    const [currentPlayer, setCurrentPlayer] = useState("player1")
 
     useEffect(() => {
         if (grid > 1 && players > 0) {
@@ -73,7 +74,7 @@ function App() {
     return (
         <>
             <Header/>
-            {!isGameSet ? <SubHeader players={players} grid={grid}/> : <PlaySubHeader playerControl={playerControl}/>}
+            {!isGameSet ? <SubHeader players={players} grid={grid}/> : <PlaySubHeader currentPlayer={currentPlayer}/>}
             {isGameSet ? <PlayArea gridArray={gridArray}
                                    setPlayerControl={setPlayerControl}
                                    playerControl={playerControl}/>

@@ -1,7 +1,7 @@
-const PlaySubHeader = () => {
+const PlaySubHeader = ({currentPlayer}) => {
     return (
         <>
-        <p>This is where the current player will be displayed</p>
+            <h2 className="subHeaderText">Player {currentPlayer.slice(-1)}'s turn</h2>
         </>
     )
 }
