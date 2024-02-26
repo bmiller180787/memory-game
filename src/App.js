@@ -71,13 +71,31 @@ function App() {
         setGridArray(shufflePlayTiles(doublePlayTiles))
     }, [grid])
 
+    useEffect(() => {
+        if (playerControl.length === 1 || playerControl.length === 0) {
+            setCurrentPlayer("player1")
+        } else {
+            for (let i = 1; i > playerControl.length - 1; i++) {
+                const firstPlayerToBeCompared = playerControl[i]
+                const secondPlayerToBeCompared = playerControl[i + 1]
+
+                if (firstPlayerToBeCompared[`player${i}`].turn === secondPlayerToBeCompared[``].turn) {
+                    setCurrentPlayer(`player${i + 1}`)
+                } setCurrentPlayer(`player${i + 1}`)
+            }
+        }
+
+    }, [playerControl])
+
     return (
         <>
             <Header/>
             {!isGameSet ? <SubHeader players={players} grid={grid}/> : <PlaySubHeader currentPlayer={currentPlayer}/>}
             {isGameSet ? <PlayArea gridArray={gridArray}
                                    setPlayerControl={setPlayerControl}
-                                   playerControl={playerControl}/>
+                                   playerControl={playerControl}
+                                   currentPlayer={currentPlayer}
+                                   setCurrentPlayer={setCurrentPlayer}/>
                 : <GameSetup setPlayers={setPlayers}
                              setGrid={setGrid}
                              grid={grid}
