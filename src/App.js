@@ -30,7 +30,7 @@ function App() {
     const [isGameSet, setIsGameSet] = useState(false)
     const [gridArray, setGridArray] = useState([])
     const [playerControl, setPlayerControl] = useState([])
-    const [currentPlayer, setCurrentPlayer] = useState("player1")
+    const [currentPlayer, setCurrentPlayer] = useState("")
 
     useEffect(() => {
         if (grid > 1 && players > 0) {
@@ -75,16 +75,14 @@ function App() {
         if (playerControl.length === 1 || playerControl.length === 0) {
             setCurrentPlayer("player1")
         } else {
-            for (let i = 1; i > playerControl.length - 1; i++) {
+            for (let i = 0; i >= playerControl.length - 1; i++) {
                 const firstPlayerToBeCompared = playerControl[i]
                 const secondPlayerToBeCompared = playerControl[i + 1]
-
-                if (firstPlayerToBeCompared[`player${i}`].turn === secondPlayerToBeCompared[``].turn) {
-                    setCurrentPlayer(`player${i + 1}`)
-                } setCurrentPlayer(`player${i + 1}`)
+                if (firstPlayerToBeCompared.turn === secondPlayerToBeCompared.turn) {
+                    setCurrentPlayer(`player${i}`)
+                }
             }
         }
-
     }, [playerControl])
 
     return (
