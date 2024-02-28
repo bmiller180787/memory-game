@@ -79,7 +79,9 @@ function App() {
                 const firstPlayerToBeCompared = playerControl[i]
                 const secondPlayerToBeCompared = playerControl[i + 1]
                 if (firstPlayerToBeCompared.turn === secondPlayerToBeCompared.turn) {
-                    setCurrentPlayer(`player${i}`)
+                    setCurrentPlayer(`player${i+1}`)
+
+                    // try to use reduce method to cycle through objects
                 }
             }
         }
