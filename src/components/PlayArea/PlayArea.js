@@ -12,8 +12,7 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
                 prevPlayerControl[currentPlayerIndex][currentPlayer].turn += 1
             }
             return [...prevPlayerControl]
-        });
-
+        })
     }
 
     return (

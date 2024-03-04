@@ -36,15 +36,24 @@ function App() {
         if (grid > 1 && players > 0) {
             setIsGameSet(true)
         }
-    }, [grid, players])
+    }, [grid])
 
     useEffect(() => {
-        for (let i = 1; i <= players; i++) {
-            setPlayerControl(x => [
-                ...x,
-                {
-                    [`player${i}`]: {score: 0, turn: 0}
-                }])
+        if (players === 1) {
+            setPlayerControl([
+                {player1: 0}
+            ])
+        } else if (players === 2) {
+            setPlayerControl([
+                {player1: 0},
+                {player2: 0}
+            ])
+        } else if (players === 3) {
+            setPlayerControl([
+                {player1: 0},
+                {player2: 0},
+                {player3: 0}
+            ])
         }
     }, [players])
 
@@ -71,26 +80,11 @@ function App() {
         setGridArray(shufflePlayTiles(doublePlayTiles))
     }, [grid])
 
-    useEffect(() => {
-        if (playerControl.length === 1 || playerControl.length === 0) {
-            setCurrentPlayer("player1")
-        } else {
-            for (let i = 0; i >= playerControl.length - 1; i++) {
-                const firstPlayerToBeCompared = playerControl[i]
-                const secondPlayerToBeCompared = playerControl[i + 1]
-                if (firstPlayerToBeCompared.turn === secondPlayerToBeCompared.turn) {
-                    setCurrentPlayer(`player${i+1}`)
-
-                    // try to use reduce method to cycle through objects
-                }
-            }
-        }
-    }, [playerControl])
-
     return (
         <>
             <Header/>
-            {!isGameSet ? <SubHeader players={players} grid={grid}/> : <PlaySubHeader currentPlayer={currentPlayer}/>}
+            {!isGameSet ? <SubHeader players={players} grid={grid}/> :
+                <PlaySubHeader currentPlayer={currentPlayer}/>}
             {isGameSet ? <PlayArea gridArray={gridArray}
                                    setPlayerControl={setPlayerControl}
                                    playerControl={playerControl}
