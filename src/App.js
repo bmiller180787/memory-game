@@ -30,7 +30,7 @@ function App() {
     const [isGameSet, setIsGameSet] = useState(false)
     const [gridArray, setGridArray] = useState([])
     const [playerControl, setPlayerControl] = useState([])
-    const [currentPlayer, setCurrentPlayer] = useState("")
+    const [currentPlayer, setCurrentPlayer] = useState("player1")
 
     useEffect(() => {
         if (grid > 1 && players > 0) {
