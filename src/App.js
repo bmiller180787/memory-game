@@ -43,7 +43,7 @@ function App() {
             setPlayerControl(x => [
                 ...x,
                 {
-                    [`player${i}`]: {score: 0, turn: 0}
+                    [`player${i}`] : 0
                 }])
         }
     }, [players])
