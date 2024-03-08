@@ -2,19 +2,31 @@ import "./PlayArea.css"
 
 const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, setCurrentPlayer}) => {
 
-    function handleClick() {
-        setPlayerControl((prevPlayerControl) => {
-            const currentPlayerIndex = prevPlayerControl.findIndex(
-                (playerObject) => Object.keys(playerObject)[0] === currentPlayer
+    // function handleClick() {
+    //     setPlayerControl((prevPlayerControl) => {
+    //         const currentPlayerIndex = prevPlayerControl.findIndex(
+    //             (playerObject) => Object.keys(playerObject)[0] === currentPlayer
+    //         )
 
-            )
-            if (currentPlayerIndex !== -1) {
-                prevPlayerControl[currentPlayerIndex][currentPlayer].turn += 1
-            }
-            return [...prevPlayerControl]
-        });
+    //         if (currentPlayerIndex !== -1) {
+    //             prevPlayerControl[currentPlayerIndex][currentPlayer] + 1
+    //         }
 
+    //         setPlayerControl([...prevPlayerControl])
+    //     })
+    // }
+
+    function handleClick () {
+        let currentIndex = playerControl.findIndex((obj) => Object.keys(obj)[0] === currentPlayer)
+        console.log(currentIndex)
+        
+        if (currentIndex !== -1) {
+            setPlayerControl[currentIndex][currentPlayer] ++
+        }
+        console.log("Find Index not working")
     }
+
+    console.log(currentPlayer)
 
     return (
         <>

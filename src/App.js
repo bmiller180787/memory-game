@@ -30,7 +30,8 @@ function App() {
     const [isGameSet, setIsGameSet] = useState(false)
     const [gridArray, setGridArray] = useState([])
     const [playerControl, setPlayerControl] = useState([])
-    const [currentPlayer, setCurrentPlayer] = useState("")
+    const [currentPlayer, setCurrentPlayer] = useState(1)
+    const [turnCounter, setTurnCounter] = useState(1)
 
     useEffect(() => {
         if (grid > 1 && players > 0) {
@@ -43,7 +44,7 @@ function App() {
             setPlayerControl(x => [
                 ...x,
                 {
-                    [`player${i}`] : 0
+                    [i] : 0
                 }])
         }
     }, [players])
@@ -72,20 +73,13 @@ function App() {
     }, [grid])
 
     useEffect(() => {
-        if (playerControl.length === 1 || playerControl.length === 0) {
-            setCurrentPlayer("player1")
-        } else {
-            for (let i = 0; i >= playerControl.length - 1; i++) {
-                const firstPlayerToBeCompared = playerControl[i]
-                const secondPlayerToBeCompared = playerControl[i + 1]
-                if (firstPlayerToBeCompared.turn === secondPlayerToBeCompared.turn) {
-                    setCurrentPlayer(`player${i+1}`)
-
-                    // try to use reduce method to cycle through objects
-                }
-            }
+        if (currentPlayer == playerControl.length) {
+            setCurrentPlayer(1)
+        } 
+        if (turnCounter !== 1){
+            setCurrentPlayer(currentPlayer + 1)
         }
-    }, [playerControl])
+    }, [turnCounter])
 
     return (
         <>
