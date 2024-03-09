@@ -44,7 +44,7 @@ function App() {
             setPlayerControl(x => [
                 ...x,
                 {
-                    [i] : 0
+                    ["player"] : i , "score" : 0
                 }])
         }
     }, [players])
@@ -71,15 +71,6 @@ function App() {
         const doublePlayTiles = tilesToBeUsed.concat(tilesToBeUsed)
         setGridArray(shufflePlayTiles(doublePlayTiles))
     }, [grid])
-
-    useEffect(() => {
-        if (currentPlayer == playerControl.length) {
-            setCurrentPlayer(1)
-        } 
-        if (turnCounter !== 1){
-            setCurrentPlayer(currentPlayer + 1)
-        }
-    }, [turnCounter])
 
     return (
         <>
