@@ -17,16 +17,16 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
     // }
 
     function handleClick () {
-        let currentIndex = playerControl.findIndex((obj) => Object.keys(obj)[0] === currentPlayer)
-        console.log(currentIndex)
+        let currentIndex = playerControl.findIndex((e) => e.player === currentPlayer)
+        console.log("Current index " + currentIndex)
         
         if (currentIndex !== -1) {
-            setPlayerControl[currentIndex][currentPlayer] ++
+            setPlayerControl(playerControl[currentIndex].currentPlayer + 1)
         }
         console.log("Find Index not working")
     }
 
-    console.log(currentPlayer)
+    console.log(`Current Player = ${currentPlayer}`)
 
     return (
         <>
