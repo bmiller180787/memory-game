@@ -21,12 +21,10 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
         console.log("Current index " + currentIndex)
         
         if (currentIndex !== -1) {
-            setPlayerControl(playerControl[currentIndex].currentPlayer + 1)
+            console.log(`Current Player = ${currentPlayer}`)
         }
-        console.log("Find Index not working")
+        setPlayerControl(playerControl[currentIndex].currentPlayer + 1)   
     }
-
-    console.log(`Current Player = ${currentPlayer}`)
 
     return (
         <>
