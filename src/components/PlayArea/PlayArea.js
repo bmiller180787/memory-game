@@ -17,14 +17,17 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
     // }
 
     function handleClick () {
-        let currentIndex = playerControl.findIndex((e) => e.player === currentPlayer)
+        const currentIndex = playerControl.findIndex((e) => e.player === currentPlayer)
         console.log("Current index " + currentIndex)
         
         if (currentIndex !== -1) {
+            setPlayerControl(playerControl[currentIndex].currentPlayer + 1)
+        } else {
             console.log(`Current Player = ${currentPlayer}`)
         }
-        setPlayerControl(playerControl[currentIndex].currentPlayer + 1)   
     }
+
+    console.log(`Current Player = ${currentPlayer}`)
 
     return (
         <>
