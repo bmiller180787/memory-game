@@ -30,8 +30,15 @@ function App() {
     const [isGameSet, setIsGameSet] = useState(false)
     const [gridArray, setGridArray] = useState([])
     const [playerControl, setPlayerControl] = useState([])
-    const [currentPlayer, setCurrentPlayer] = useState(2)
-    const [turnCounter, setTurnCounter] = useState(1)
+    const [currentPlayer, setCurrentPlayer] = useState(0)
+    const [turnCounter, setTurnCounter] = useState(0)
+
+    useEffect(() => {
+        if (isGameSet) {
+            setCurrentPlayer(1)
+        } 
+        setCurrentPlayer(currentPlayer + 1)  
+    }, [turnCounter])
 
     useEffect(() => {
         if (grid > 1 && players > 0) {
@@ -80,7 +87,8 @@ function App() {
                                    setPlayerControl={setPlayerControl}
                                    playerControl={playerControl}
                                    currentPlayer={currentPlayer}
-                                   setCurrentPlayer={setCurrentPlayer}/>
+                                   turnCounter={turnCounter}
+                                   setTurnCounter={setTurnCounter}/>
                 : <GameSetup setPlayers={setPlayers}
                              setGrid={setGrid}
                              grid={grid}

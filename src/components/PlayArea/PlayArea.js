@@ -1,6 +1,6 @@
 import "./PlayArea.css"
 
-const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, setCurrentPlayer}) => {
+const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, setTurnCounter, turnCounter}) => {
 
     // function handleClick() {
     //     setPlayerControl((prevPlayerControl) => {
@@ -31,6 +31,8 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
         } else {
             console.log("Handle Click not working")
         }
+
+        setTurnCounter(turnCounter + 1)
     }
 
     return (
