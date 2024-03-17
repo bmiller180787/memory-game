@@ -37,7 +37,7 @@ function App() {
         if (isGameSet) {
             setCurrentPlayer(1)
         } 
-        setCurrentPlayer(currentPlayer + 1)  
+        setCurrentPlayer(currentPlayer + 1)
     }, [turnCounter])
 
     useEffect(() => {
