@@ -30,7 +30,7 @@ function App() {
     const [isGameSet, setIsGameSet] = useState(false)
     const [gridArray, setGridArray] = useState([])
     const [playerControl, setPlayerControl] = useState([])
-    const [currentPlayer, setCurrentPlayer] = useState(1)
+    const [currentPlayer, setCurrentPlayer] = useState(2)
     const [turnCounter, setTurnCounter] = useState(1)
 
     useEffect(() => {

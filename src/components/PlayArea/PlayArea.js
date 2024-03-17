@@ -16,12 +16,18 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
     //     })
     // }
 
-    async function handleClick () {
+    function handleClick () {
        const currentIndex = playerControl.findIndex((e) => e.player === currentPlayer)
-        console.log("Current index " + currentIndex)
-        
-        if (await currentIndex !== -1) {
-            setPlayerControl(playerControl[currentIndex].currentPlayer + 1)
+       const currentScore = playerControl[currentIndex].score
+
+        if (currentIndex !== -1) {
+            setPlayerControl(playerControl.map((newPlayerControl, i) => {
+                if (i === currentIndex) {
+                    return {player : currentIndex + 1, score : currentScore + 1}
+                } else {
+                    return newPlayerControl
+                }
+            }))
         } else {
             console.log("Handle Click not working")
         }
