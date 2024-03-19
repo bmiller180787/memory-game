@@ -4,39 +4,43 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
 
     const currentPlayerIndex = playerControl.findIndex((e) => e.player === currentPlayer)
     const currentScore = playerControl[currentPlayerIndex].score
-    const scoreIndex = matchCheck.length - 1
 
-    function addMatchTiles () {
+//  to select which index to add tile value to   
+    function addMatchIndex () {
         if (matchCheck.length === 0) {
             return 0
         }
         return 1
     }
 
+// to check if the tiles match   
     function checkMatch () {
         if (matchCheck.length === 2){
             if (matchCheck[0] === matchCheck[1]){
                 return true
             }
-    return false
-    }}
+            return false
+        }
+        return false
+    }
+
+    function updatePlayerScore () {
+        setPlayerControl(playerControl.map((newPlayerControl, i) => {
+            if (i === currentPlayerIndex) {
+                return {player : currentPlayerIndex + 1, score : currentScore + 1}
+            } else {
+                return newPlayerControl
+            }
+        }))
+    }
 
     function handleClick () {
-        
-        if (matchCheck.length = 0) {
-            
-        }
 
-        if (currentPlayerIndex !== -1) {
-            setPlayerControl(playerControl.map((newPlayerControl, i) => {
-                if (i === currentPlayerIndex) {
-                    return {player : currentPlayerIndex + 1, score : currentScore + 1}
-                } else {
-                    return newPlayerControl
-                }
-            }))
+        console.log (checkMatch())
+        if (checkMatch()) {
+
         } else {
-            console.log("Handle Click not working")
+            console.log("handleClick not working")
         }
         setTurnCounter(turnCounter + 1)
     }
