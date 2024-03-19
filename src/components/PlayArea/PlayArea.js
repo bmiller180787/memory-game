@@ -1,29 +1,36 @@
 import "./PlayArea.css"
 
-const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, setTurnCounter, turnCounter}) => {
+const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, setTurnCounter, turnCounter, matchCheck, setMatchCheck}) => {
 
-    // function handleClick() {
-    //     setPlayerControl((prevPlayerControl) => {
-    //         const currentPlayerIndex = prevPlayerControl.findIndex(
-    //             (playerObject) => Object.keys(playerObject)[0] === currentPlayer
-    //         )
+    const currentPlayerIndex = playerControl.findIndex((e) => e.player === currentPlayer)
+    const currentScore = playerControl[currentPlayerIndex].score
+    const scoreIndex = matchCheck.length - 1
 
-    //         if (currentPlayerIndex !== -1) {
-    //             prevPlayerControl[currentPlayerIndex][currentPlayer] + 1
-    //         }
+    function addMatchTiles () {
+        if (matchCheck.length === 0) {
+            return 0
+        }
+        return 1
+    }
 
-    //         setPlayerControl([...prevPlayerControl])
-    //     })
-    // }
+    function checkMatch () {
+        if (matchCheck.length === 2){
+            if (matchCheck[0] === matchCheck[1]){
+                return true
+            }
+    return false
+    }}
 
     function handleClick () {
-       const currentIndex = playerControl.findIndex((e) => e.player === currentPlayer)
-       const currentScore = playerControl[currentIndex].score
+        
+        if (matchCheck.length = 0) {
+            
+        }
 
-        if (currentIndex !== -1) {
+        if (currentPlayerIndex !== -1) {
             setPlayerControl(playerControl.map((newPlayerControl, i) => {
-                if (i === currentIndex) {
-                    return {player : currentIndex + 1, score : currentScore + 1}
+                if (i === currentPlayerIndex) {
+                    return {player : currentPlayerIndex + 1, score : currentScore + 1}
                 } else {
                     return newPlayerControl
                 }
@@ -31,7 +38,6 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
         } else {
             console.log("Handle Click not working")
         }
-
         setTurnCounter(turnCounter + 1)
     }
 

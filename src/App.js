@@ -32,9 +32,10 @@ function App() {
     const [playerControl, setPlayerControl] = useState([])
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [turnCounter, setTurnCounter] = useState(0)
+    const [matchCheck, setMatchCheck] = useState([])
 
     useEffect(() => {
-        if (isGameSet) {
+        if (turnCounter === 0) {
             setCurrentPlayer(1)
         } 
         setCurrentPlayer(currentPlayer + 1)
@@ -88,7 +89,9 @@ function App() {
                                    playerControl={playerControl}
                                    currentPlayer={currentPlayer}
                                    turnCounter={turnCounter}
-                                   setTurnCounter={setTurnCounter}/>
+                                   setTurnCounter={setTurnCounter}
+                                   matchCheck={matchCheck}
+                                   setMatchCheck={setMatchCheck}/>
                 : <GameSetup setPlayers={setPlayers}
                              setGrid={setGrid}
                              grid={grid}
