@@ -34,8 +34,10 @@ function App() {
     const [turnCounter, setTurnCounter] = useState(0)
     const [matchCheck, setMatchCheck] = useState([])
 
+    console.log(playerControl.length)
+
     useEffect(() => {
-        if (turnCounter === 0) {
+        if (turnCounter === playerControl.lenght - 1) {
             setCurrentPlayer(1)
         } 
         setCurrentPlayer(currentPlayer + 1)

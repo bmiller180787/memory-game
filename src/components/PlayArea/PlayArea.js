@@ -3,7 +3,7 @@ import "./PlayArea.css"
 const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, setTurnCounter, turnCounter, matchCheck, setMatchCheck}) => {
 
     const currentPlayerIndex = playerControl.findIndex((e) => e.player === currentPlayer)
-    const currentScore = playerControl[currentPlayerIndex].score
+    const currentScore = playerControl[currentPlayerIndex]
 
 //  to select which index to add tile value to   
     function addMatchIndex () {
@@ -11,17 +11,6 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
             return 0
         }
         return 1
-    }
-
-// to check if the tiles match   
-    function checkMatch () {
-        if (matchCheck.length === 2){
-            if (matchCheck[0] === matchCheck[1]){
-                return true
-            }
-            return false
-        }
-        return false
     }
 
     function updatePlayerScore () {
@@ -34,13 +23,9 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
         }))
     }
 
-    function handleClick () {
-
-        console.log (checkMatch())
-        if (checkMatch()) {
-
-        } else {
-            console.log("handleClick not working")
+    const handleClick = (value) => {
+        if (matchCheck.length !== 2) {
+            setMatchCheck(prevMatchCheck => [...prevMatchCheck, value])
         }
         setTurnCounter(turnCounter + 1)
     }
@@ -50,7 +35,7 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
             <div className="playingGrid">
                 {gridArray.map((tile, key) => {
                     return (
-                        <div onClick={handleClick} key={key} className="tile" value={tile.value}>
+                        <div onClick={() => handleClick(tile.value)} key={key} className="tile">
                             <p>{tile.name}</p>
                         </div>
                     )
