@@ -1,21 +1,18 @@
 import "./PlayArea.css"
 
-const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, setTurnCounter, turnCounter, matchCheck, setMatchCheck}) => {
+const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, turnCounter, setTurnCounter}) => {
 
+    let matchCheckArray = []
     const currentPlayerIndex = playerControl.findIndex((e) => e.player === currentPlayer)
     const currentScore = playerControl[currentPlayerIndex].score
 
-    function checkMatch () {
-        if(matchCheck.length === 2) {
-            if (matchCheck[0] === matchCheck[1]) {
+    const checkMatch = () => {
+            if (matchCheckArray[0] === matchCheckArray[1]) {
                 return true
             } else {
             return false
             }
-        } else {
-            return false
         }
-    }
 
     function updatePlayerScore () {
         setPlayerControl(playerControl.map((newPlayerControl, i) => {
@@ -27,23 +24,21 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
         }))
     }
 
-    function addToMatchCheck (value) {
-        if (matchCheck.length !== 2) {
-            setMatchCheck(prevMatchCheck => [...prevMatchCheck, value])
-        }
+    function addToMatchCheckArray (value) {
+            matchCheckArray.push(value)
     }
 
-    const handleClick = (value) => {
-        console.log("hits 34")
-        addToMatchCheck(value)
-        console.log(checkMatch())
-
-        if (checkMatch()) {
-            console.log("hits 37")
-            updatePlayerScore()
+    function handleClick (value) {
+        if (matchCheckArray.length === 2) {
+            if (checkMatch()) {
+                updatePlayerScore()
+                matchCheckArray = []
+            } else {
+                setTurnCounter(turnCounter + 1)
+            }
+        } else {
+            addToMatchCheckArray(value)
         }
-        console.log("hits 40")
-        setTurnCounter(turnCounter + 1)
     }
 
     return (
