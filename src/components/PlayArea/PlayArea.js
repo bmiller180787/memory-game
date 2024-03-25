@@ -1,13 +1,12 @@
 import "./PlayArea.css"
 
-const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, turnCounter, setTurnCounter}) => {
+const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, turnCounter, setTurnCounter, matchCheck, setMatchCheck}) => {
 
-    let matchCheckArray = []
     const currentPlayerIndex = playerControl.findIndex((e) => e.player === currentPlayer)
     const currentScore = playerControl[currentPlayerIndex].score
 
     const checkMatch = () => {
-            if (matchCheckArray[0] === matchCheckArray[1]) {
+            if (matchCheck[0] === matchCheck[1]) {
                 return true
             } else {
             return false
@@ -24,21 +23,12 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, tu
         }))
     }
 
-    function addToMatchCheckArray (value) {
-            matchCheckArray.push(value)
-    }
-
-    function handleClick (value) {
-        if (matchCheckArray.length === 2) {
-            if (checkMatch()) {
-                updatePlayerScore()
-                matchCheckArray = []
+    const handleClick = (value) => {
+        if (matchCheck.length !== 2) {
+            setMatchCheck(prevMatchCheck => [...prevMatchCheck, value])
             } else {
                 setTurnCounter(turnCounter + 1)
             }
-        } else {
-            addToMatchCheckArray(value)
-        }
     }
 
     return (

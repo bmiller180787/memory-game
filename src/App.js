@@ -30,9 +30,17 @@ function App() {
     const [isGameSet, setIsGameSet] = useState(false)
     const [gridArray, setGridArray] = useState([])
     const [playerControl, setPlayerControl] = useState([])
+    const [matchCheck, setMatchCheck] = useState([])
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [turnCounter, setTurnCounter] = useState(0)
-    const [matchCheck, setMatchCheck] = useState([])
+
+    const checkMatch = () => {
+        if (matchCheck[0] === matchCheck[1]) {
+            return true
+        } else {
+        return false
+        }
+    }
 
     useEffect(() => {
         if (currentPlayer === players) {
@@ -41,6 +49,13 @@ function App() {
             setCurrentPlayer(currentPlayer + 1)
         }
     }, [turnCounter])
+
+    useEffect(() => {
+        if (!checkMatch()) {
+            setTurnCounter(turnCounter + 1)
+        }
+
+    }, [matchCheck])
 
     useEffect(() => {
         if (grid > 1 && players > 0) {
