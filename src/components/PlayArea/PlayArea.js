@@ -5,14 +5,6 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, tu
     const currentPlayerIndex = playerControl.findIndex((e) => e.player === currentPlayer)
     const currentScore = playerControl[currentPlayerIndex].score
 
-    const checkMatch = () => {
-            if (matchCheck[0] === matchCheck[1]) {
-                return true
-            } else {
-            return false
-            }
-        }
-
     function updatePlayerScore () {
         setPlayerControl(playerControl.map((newPlayerControl, i) => {
             if (i === currentPlayerIndex) {
@@ -23,12 +15,23 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, tu
         }))
     }
 
-    const handleClick = (value) => {
-        if (matchCheck.length !== 2) {
-            setMatchCheck(prevMatchCheck => [...prevMatchCheck, value])
-            } else {
-                setTurnCounter(turnCounter + 1)
-            }
+    function addToMatchCheck (value, key) {
+        setMatchCheck([...matchCheck, {"tile" : key , "value" : value}])
+    }
+
+    function removeFromMatchCheck (key) {
+        const newMatchCheck = matchCheck.filter((x, e) => e !== key)
+        setMatchCheck([...newMatchCheck])
+    }
+
+    function handleClick (value, key) {
+        const findMatchCheckIndex = matchCheck.findIndex((e) => e.tile === key)
+        console.log(findMatchCheckIndex)
+        if (matchCheck.length === 0 || findMatchCheckIndex === -1) {
+            addToMatchCheck(value, key)
+        } else {
+            removeFromMatchCheck(findMatchCheckIndex)
+        }
     }
 
     return (
@@ -36,7 +39,7 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, tu
             <div className="playingGrid">
                 {gridArray.map((tile, key) => {
                     return (
-                        <div onClick={() => handleClick(tile.value)} key={key} className="tile">
+                        <div onClick={() => handleClick(tile.value, key)} key={key} className="tile">
                             <p>{tile.name}</p>
                         </div>
                     )

@@ -50,12 +50,10 @@ function App() {
         }
     }, [turnCounter])
 
-    useEffect(() => {
-        if (!checkMatch()) {
-            setTurnCounter(turnCounter + 1)
-        }
+    // useEffect(() => {
 
-    }, [matchCheck])
+     
+    // }, [matchCheck])
 
     useEffect(() => {
         if (grid > 1 && players > 0) {
