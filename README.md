@@ -1,6 +1,6 @@
 Welcome to my game
 
-This game is a simple memory test where each player takes a turn to select 2 tiles to find a match.
+This game is a simple memory game where each player takes a turn to select 2 tiles to find a match.
 If the player finds a matching pair, they get a point and go again.
 If they do not find a match, the next player takes a turn.
 The game ends when all the matches are found and the player with the mosts points wins.
