@@ -7,23 +7,6 @@ import SubHeader from "./components/SubHeader/SubHeader";
 import GameSetup from "./components/GameSetup/GameSetup";
 import PlaySubHeader from "./components/PlaySubHeader/PlaySubHeader";
 
-function shufflePlayTiles(doublePlayTiles) {
-    let a = [...doublePlayTiles]
-    let reps = Math.floor(Math.random() * (10 - 20) + 10)
-
-    for (let i = 0; i < reps; i++) {
-        let firstCut = Math.floor(Math.random() * ((doublePlayTiles.length - 1) - 1) + 1)
-        let secondCut = Math.floor(Math.random() * (((doublePlayTiles.length - 1) - firstCut) - 1) + 1)
-        let b = a.splice(firstCut)
-        let c = b.splice(secondCut)
-        let y = c.concat(b, a)
-
-        a = []
-        a = [...y]
-    }
-    return a
-}
-
 function App() {
     const [players, setPlayers] = useState(0)
     const [grid, setGrid] = useState(0)
@@ -33,8 +16,37 @@ function App() {
     const [matchCheck, setMatchCheck] = useState([])
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [turnCounter, setTurnCounter] = useState(0)
+    const currentPlayerIndex = playerControl.findIndex((e) => e.player === currentPlayer)
+    const currentScore = playerControl[currentPlayerIndex].score
 
-    const checkMatch = () => {
+    function shufflePlayTiles(doublePlayTiles) {
+        let a = [...doublePlayTiles]
+        let reps = Math.floor(Math.random() * (10 - 20) + 10)
+    
+        for (let i = 0; i < reps; i++) {
+            let firstCut = Math.floor(Math.random() * ((doublePlayTiles.length - 1) - 1) + 1)
+            let secondCut = Math.floor(Math.random() * (((doublePlayTiles.length - 1) - firstCut) - 1) + 1)
+            let b = a.splice(firstCut)
+            let c = b.splice(secondCut)
+            let y = c.concat(b, a)
+    
+            a = []
+            a = [...y]
+        }
+        return a
+    }
+
+    function updatePlayerScore () {
+        setPlayerControl(playerControl.map((newPlayerControl, i) => {
+            if (i === currentPlayerIndex) {
+                return {player : currentPlayerIndex + 1, score : currentScore + 1}
+            } else {
+                return newPlayerControl
+            }
+        }))
+    }
+
+    function checkMatch () {
         if (matchCheck[0] === matchCheck[1]) {
             return true
         } else {

@@ -1,19 +1,6 @@
 import "./PlayArea.css"
 
-const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, turnCounter, setTurnCounter, matchCheck, setMatchCheck}) => {
-
-    const currentPlayerIndex = playerControl.findIndex((e) => e.player === currentPlayer)
-    const currentScore = playerControl[currentPlayerIndex].score
-
-    function updatePlayerScore () {
-        setPlayerControl(playerControl.map((newPlayerControl, i) => {
-            if (i === currentPlayerIndex) {
-                return {player : currentPlayerIndex + 1, score : currentScore + 1}
-            } else {
-                return newPlayerControl
-            }
-        }))
-    }
+const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatchCheck}) => {
 
     function addToMatchCheck (value, key) {
         setMatchCheck([...matchCheck, {"tile" : key , "value" : value}])
@@ -26,7 +13,6 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, tu
 
     function handleClick (value, key) {
         const findMatchCheckIndex = matchCheck.findIndex((e) => e.tile === key)
-        console.log(findMatchCheckIndex)
         if (matchCheck.length === 0 || findMatchCheckIndex === -1) {
             addToMatchCheck(value, key)
         } else {
