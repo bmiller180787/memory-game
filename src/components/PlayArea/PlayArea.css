@@ -10,10 +10,24 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.3rem;
+    align-items: center;
 }
 
 .tile {
     width: 50%;
     cursor: pointer;
-    border: red solid 0.15rem;
+    border: red solid 2px;
+    margin: auto;
+    background-color: #4d4dff;
+}
+
+.tiletext {
+    font-family: "Yarndings 20", system-ui;
+    text-align: center;
+    size: 50px;
+    color: #4d4dff;
+}
+
+.thisone {
+    background-color: #ffffff;
 }
