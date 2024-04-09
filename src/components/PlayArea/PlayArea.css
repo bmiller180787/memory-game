@@ -2,6 +2,7 @@ img {
     height: 100%;
     width: auto;
     object-fit: contain;
+    opacity: 1;
 }
 
 .playingGrid {
@@ -18,7 +19,7 @@ img {
     cursor: pointer;
     border: red solid 2px;
     margin: auto;
-    background-color: #4d4dff;
+    /* background-color: #4d4dff; */
 }
 
 .tiletext {
@@ -28,6 +29,6 @@ img {
     color: #4d4dff;
 }
 
-.thisone {
-    background-color: #ffffff;
+.visible {
+    opacity: 0;
 }

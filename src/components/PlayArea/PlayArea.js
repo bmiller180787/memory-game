@@ -1,15 +1,29 @@
 import "./PlayArea.css"
 import { useRef } from "react"
 
-const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatchCheck, setPlayerControl}) => {
+const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatchCheck, setPlayerControl, matchedTiles, setMatchedTiles}) => {
 
     const currentPlayerIndex = playerControl.findIndex((e) => e.player === currentPlayer)
     const currentScore = playerControl[currentPlayerIndex].score
-    const classCycling = useRef({})
+    const classChange = useRef({})
 
-    function checkIfTilesBeenClicked () {
-        
+    function checkMatch () {
+        if (matchCheck[0] === matchCheck[1]) {
+            return true
+        } else {
+        return false
+        }
+    }
 
+    function cycleVisible (key) {
+        const selectedTile = classChange.current[key]
+
+        if (selectedTile.classList.contains("visible")){
+
+            selectedTile.classList.remove("visible")
+        } else {
+            selectedTile.classList.add("visible")
+        }
     }
 
     function updatePlayerScore () {
@@ -33,15 +47,20 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatch
 
     function handleClick (value, key) {
         const findMatchCheckIndex = matchCheck.findIndex((e) => e.tile === key)
+        cycleVisible(key)
 
-        const element = classCycling.current[key]
+        addToMatchCheck(value, key)
 
-        if (matchCheck.length === 0 || findMatchCheckIndex === -1) {
-            addToMatchCheck(value, key)
-            element.classList.add("thisone")
+        if (matchCheck.length === 2) {
+
+            if (checkMatch()) {
+                updatePlayerScore()
+                setMatchCheck([])
+            } else {
+
+            }
         } else {
-            removeFromMatchCheck(findMatchCheckIndex)
-            element.classList.remove("thisone")
+
         }
     }
 
@@ -50,7 +69,7 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatch
             <div className="playingGrid">
                 {gridArray.map((tile, key) => {
                     return (
-                        <div ref={(e) => (classCycling.current[key] = e)} onClick={() => handleClick(tile.value, key)} key={key} className="tile">
+                        <div ref={(e) => (classChange.current[key] = e)} onClick={() => handleClick(tile.value, key)} key={key} className="tile">
                             <p className="tiletext">{tile.name}</p>
                         </div>
                     )
