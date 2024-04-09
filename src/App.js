@@ -15,6 +15,7 @@ function App() {
     const [playerControl, setPlayerControl] = useState([])
     const [matchCheck, setMatchCheck] = useState([])
     const [currentPlayer, setCurrentPlayer] = useState(0)
+    const [matchedTiles, setMatchedTiles] = useState([])
     const [turnCounter, setTurnCounter] = useState(0)
 
     function shufflePlayTiles(doublePlayTiles) {
@@ -34,14 +35,6 @@ function App() {
         return a
     }
 
-    function checkMatch () {
-        if (matchCheck[0] === matchCheck[1]) {
-            return true
-        } else {
-        return false
-        }
-    }
-
     useEffect(() => {
         if (currentPlayer === players) {
             setCurrentPlayer(1)
@@ -49,11 +42,6 @@ function App() {
             setCurrentPlayer(currentPlayer + 1)
         }
     }, [turnCounter])
-
-    // useEffect(() => {
-
-     
-    // }, [matchCheck])
 
     useEffect(() => {
         if (grid > 1 && players > 0) {
@@ -108,7 +96,9 @@ function App() {
                              setGrid={setGrid}
                              grid={grid}
                              players={players}
-                             setGridArray={setGridArray}/>}
+                             setGridArray={setGridArray}
+                             matchedTiles={matchedTiles}
+                             setMatchedTiles={setMatchedTiles}/>}
             <Footer/>
         </>
     )

@@ -9,20 +9,22 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatch
 
     function checkMatch () {
         if (matchCheck[0] === matchCheck[1]) {
+            setMatchedTiles(...matchCheck)
             return true
         } else {
         return false
         }
     }
 
-    function cycleVisible (key) {
+    function cycleVisible (value, key) {
         const selectedTile = classChange.current[key]
-
-        if (selectedTile.classList.contains("visible")){
-
-            selectedTile.classList.remove("visible")
-        } else {
-            selectedTile.classList.add("visible")
+        console.log(matchedTiles)
+        if (!matchedTiles.includes(value)){
+            if (selectedTile.classList.contains("visible")){
+                selectedTile.classList.remove("visible")
+            } else {
+                selectedTile.classList.add("visible")
+            }
         }
     }
 
@@ -47,7 +49,7 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatch
 
     function handleClick (value, key) {
         const findMatchCheckIndex = matchCheck.findIndex((e) => e.tile === key)
-        cycleVisible(key)
+        cycleVisible(value, key)
 
         addToMatchCheck(value, key)
 
