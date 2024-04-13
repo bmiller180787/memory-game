@@ -1,11 +1,13 @@
 import "./PlayArea.css"
-import { useEffect, useRef } from "react"
+import { useEffect, useState, useRef } from "react"
 
-const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatchCheck, setPlayerControl, matchedTiles, setMatchedTiles, setTurnCounter, turnCounter}) => {
+const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, setTurnCounter, turnCounter}) => {
 
     const classChange = useRef({})
     const currentPlayerIndex = playerControl.findIndex((e) => e.player === currentPlayer)
     const currentScore = playerControl[currentPlayerIndex].score
+    const [matchCheck, setMatchCheck] = useState([])
+    const [matchedTiles, setMatchedTiles] = useState([])
 
     useEffect(() => {
         if (matchCheck.length === 2){
@@ -16,7 +18,7 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatch
                     ...matchCheck.slice()])
                 setMatchCheck([])
             } else {
-                setTurnCounter(turnCounter ++)
+                setTurnCounter(turnCounter + 1)
                 setMatchCheck([])
             }
         }

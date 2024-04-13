@@ -13,11 +13,8 @@ function App() {
     const [isGameSet, setIsGameSet] = useState(false)
     const [gridArray, setGridArray] = useState([])
     const [playerControl, setPlayerControl] = useState([])
-    const [matchCheck, setMatchCheck] = useState([])
     const [currentPlayer, setCurrentPlayer] = useState(0)
-    const [matchedTiles, setMatchedTiles] = useState([])
     const [turnCounter, setTurnCounter] = useState(0)
-
 
     function shufflePlayTiles(doublePlayTiles) {
         let a = [...doublePlayTiles]
@@ -91,10 +88,8 @@ function App() {
                                    setPlayerControl={setPlayerControl}
                                    playerControl={playerControl}
                                    currentPlayer={currentPlayer}
-                                   matchCheck={matchCheck}
-                                   setMatchCheck={setMatchCheck}
-                                   matchedTiles={matchedTiles}
-                                   setMatchedTiles={setMatchedTiles}/>
+                                   setTurnCounter={setTurnCounter}
+                                   turnCounter={turnCounter}/>
                 : <GameSetup setPlayers={setPlayers}
                              setGrid={setGrid}
                              grid={grid}
