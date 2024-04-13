@@ -18,6 +18,7 @@ function App() {
     const [matchedTiles, setMatchedTiles] = useState([])
     const [turnCounter, setTurnCounter] = useState(0)
 
+
     function shufflePlayTiles(doublePlayTiles) {
         let a = [...doublePlayTiles]
         let reps = Math.floor(Math.random() * (10 - 20) + 10)
@@ -91,14 +92,14 @@ function App() {
                                    playerControl={playerControl}
                                    currentPlayer={currentPlayer}
                                    matchCheck={matchCheck}
-                                   setMatchCheck={setMatchCheck}/>
+                                   setMatchCheck={setMatchCheck}
+                                   matchedTiles={matchedTiles}
+                                   setMatchedTiles={setMatchedTiles}/>
                 : <GameSetup setPlayers={setPlayers}
                              setGrid={setGrid}
                              grid={grid}
                              players={players}
-                             setGridArray={setGridArray}
-                             matchedTiles={matchedTiles}
-                             setMatchedTiles={setMatchedTiles}/>}
+                             setGridArray={setGridArray}/>}
             <Footer/>
         </>
     )

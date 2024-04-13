@@ -1,32 +1,26 @@
 import "./PlayArea.css"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 
-const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatchCheck, setPlayerControl, matchedTiles, setMatchedTiles}) => {
+const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatchCheck, setPlayerControl, matchedTiles, setMatchedTiles, setTurnCounter, turnCounter}) => {
 
+    const classChange = useRef({})
     const currentPlayerIndex = playerControl.findIndex((e) => e.player === currentPlayer)
     const currentScore = playerControl[currentPlayerIndex].score
-    const classChange = useRef({})
 
-    function checkMatch () {
-        if (matchCheck[0] === matchCheck[1]) {
-            setMatchedTiles(...matchCheck)
-            return true
-        } else {
-        return false
-        }
-    }
-
-    function cycleVisible (value, key) {
-        const selectedTile = classChange.current[key]
-        console.log(matchedTiles)
-        if (!matchedTiles.includes(value)){
-            if (selectedTile.classList.contains("visible")){
-                selectedTile.classList.remove("visible")
+    useEffect(() => {
+        if (matchCheck.length === 2){
+            if (checkMatch()) {
+                updatePlayerScore()
+                setMatchedTiles(x => [
+                    ...x,
+                    ...matchCheck.slice()])
+                setMatchCheck([])
             } else {
-                selectedTile.classList.add("visible")
+                setTurnCounter(turnCounter ++)
+                setMatchCheck([])
             }
         }
-    }
+    }, [matchCheck])
 
     function updatePlayerScore () {
         setPlayerControl(playerControl.map((newPlayerControl, i) => {
@@ -36,6 +30,27 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatch
                 return newPlayerControl
             }
         }))
+    }
+
+    function checkMatch () {
+        if (matchCheck.length === 2) {
+            if (matchCheck[0].value === matchCheck[1].value) {
+                return true
+            } else {
+                return false            
+            }
+        }
+    }
+
+    function cycleVisible (value, key) {
+        const selectedTile = classChange.current[key]
+        if (!matchedTiles.includes(value)){
+            if (selectedTile.classList.contains("visible")){
+                selectedTile.classList.remove("visible")
+            } else {
+                selectedTile.classList.add("visible")
+            }
+        }
     }
 
     function addToMatchCheck (value, key) {
@@ -48,22 +63,7 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, matchCheck, setMatch
     }
 
     function handleClick (value, key) {
-        const findMatchCheckIndex = matchCheck.findIndex((e) => e.tile === key)
-        cycleVisible(value, key)
-
         addToMatchCheck(value, key)
-
-        if (matchCheck.length === 2) {
-
-            if (checkMatch()) {
-                updatePlayerScore()
-                setMatchCheck([])
-            } else {
-
-            }
-        } else {
-
-        }
     }
 
     return (
