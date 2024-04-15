@@ -19,16 +19,18 @@ img {
     cursor: pointer;
     border: red solid 2px;
     margin: auto;
-    /* background-color: #4d4dff; */
+}
+
+.tile p {
+    opacity: 0;
 }
 
 .tiletext {
-    font-family: "Yarndings 20", system-ui;
     text-align: center;
     size: 50px;
     color: #4d4dff;
 }
 
-.visible {
-    opacity: 0;
+.visible p {
+    opacity: 1;
 }

@@ -65,7 +65,14 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
     }
 
     function handleClick (value, key) {
-        addToMatchCheck(value, key)
+        cycleVisible(value, key)
+        if (!matchCheck.includes(key)){
+            addToMatchCheck(value, key)
+        } else {
+            removeFromMatchCheck(key)
+        }
+        console.log(matchCheck)
+        console.log(matchedTiles)
     }
 
     return (
