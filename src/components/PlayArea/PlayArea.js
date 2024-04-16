@@ -44,10 +44,10 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
         }
     }
 
-    function cycleVisible (value, key) {
+    function cycleVisible (key) {
+        const findMatchedTileIndex = matchedTiles.findIndex((e) => e.tile === key)
         const selectedTile = classChange.current[key]
-        //this is where it's not working!!!!!
-        if (!matchedTiles.includes(value)){
+        if (findMatchedTileIndex === -1){
             if (selectedTile.classList.contains("visible")){
                 selectedTile.classList.remove("visible")
             } else {
@@ -59,7 +59,7 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
     // function lockVisible () {
 
     //     for (let i = 0; i <= matchCheck.length; i++) {
-    //         matchedTiles[i].classChange
+    //         matchedTiles[i]
     //     }
     // }
 
