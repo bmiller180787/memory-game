@@ -46,6 +46,7 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
 
     function cycleVisible (value, key) {
         const selectedTile = classChange.current[key]
+        //this is where it's not working!!!!!
         if (!matchedTiles.includes(value)){
             if (selectedTile.classList.contains("visible")){
                 selectedTile.classList.remove("visible")
@@ -54,6 +55,13 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
             }
         }
     }
+
+    // function lockVisible () {
+
+    //     for (let i = 0; i <= matchCheck.length; i++) {
+    //         matchedTiles[i].classChange
+    //     }
+    // }
 
     function addToMatchCheck (value, key) {
         setMatchCheck([...matchCheck, {"tile" : key , "value" : value}])
@@ -64,15 +72,15 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
         setMatchCheck([...newMatchCheck])
     }
 
-    function handleClick (value, key) {
-        cycleVisible(value, key)
-        if (!matchCheck.includes(key)){
+    async function handleClick (value, key) {
+        const findMatchCheckIndex = matchCheck.findIndex((e) => e.tile === key)
+        await cycleVisible(value, key)
+        if ((findMatchCheckIndex === -1)){
             addToMatchCheck(value, key)
         } else {
-            removeFromMatchCheck(key)
+            removeFromMatchCheck(findMatchCheckIndex)
         }
-        console.log(matchCheck)
-        console.log(matchedTiles)
+        
     }
 
     return (
@@ -80,9 +88,9 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
             <div className="playingGrid">
                 {gridArray.map((tile, key) => {
                     return (
-                        <div ref={(e) => (classChange.current[key] = e)} onClick={() => handleClick(tile.value, key)} key={key} className="tile">
+                        <button ref={(e) => (classChange.current[key] = e)} onClick={() => handleClick(tile.value, key)} key={key} className="tile">
                             <p className="tiletext">{tile.name}</p>
-                        </div>
+                        </button>
                     )
                 })}
             </div>
