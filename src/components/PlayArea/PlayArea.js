@@ -72,9 +72,9 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
         setMatchCheck([...newMatchCheck])
     }
 
-    async function handleClick (value, key) {
+    function handleClick (value, key) {
         const findMatchCheckIndex = matchCheck.findIndex((e) => e.tile === key)
-        await cycleVisible(value, key)
+        cycleVisible(key)
         if ((findMatchCheckIndex === -1)){
             addToMatchCheck(value, key)
         } else {
