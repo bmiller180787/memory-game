@@ -12,17 +12,31 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
     useEffect(() => {
         if (matchCheck.length === 2){
             if (checkMatch()) {
-                updatePlayerScore()
-                setMatchedTiles(x => [
-                    ...x,
-                    ...matchCheck.slice()])
-                setMatchCheck([])
+                handleMatch ()
             } else {
-                setTurnCounter(turnCounter + 1)
-                setMatchCheck([])
+                clearVisibleTiles()
             }
         }
     }, [matchCheck])
+
+    useEffect(() => {
+        
+    }, [matchedTiles])
+
+    function clearVisibleTiles () {
+
+        for (let i = 0; i > matchedTiles; i++) {
+            
+        }
+    }
+
+    function handleMatch () {
+        updatePlayerScore()
+        setMatchedTiles(x => [
+            ...x,
+            ...matchCheck.slice()])
+        setMatchCheck([])
+    }
 
     function updatePlayerScore () {
         setPlayerControl(playerControl.map((newPlayerControl, i) => {
@@ -56,13 +70,6 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
         }
     }
 
-    // function lockVisible () {
-
-    //     for (let i = 0; i <= matchCheck.length; i++) {
-    //         matchedTiles[i]
-    //     }
-    // }
-
     function addToMatchCheck (value, key) {
         setMatchCheck([...matchCheck, {"tile" : key , "value" : value}])
     }
@@ -74,17 +81,15 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
 
     function handleClick (value, key) {
         const findMatchCheckIndex = matchCheck.findIndex((e) => e.tile === key)
-        cycleVisible(key)
         if ((findMatchCheckIndex === -1)){
             addToMatchCheck(value, key)
         } else {
             removeFromMatchCheck(findMatchCheckIndex)
         }
-        
+        cycleVisible(key)
     }
 
     return (
-        <>
             <div className="playingGrid">
                 {gridArray.map((tile, key) => {
                     return (
@@ -94,7 +99,6 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
                     )
                 })}
             </div>
-        </>
     )
 }
 

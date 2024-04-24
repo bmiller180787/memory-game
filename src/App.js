@@ -1,16 +1,19 @@
 import './App.css';
 import {useEffect, useState} from "react"
 import Header from "./components/Header/Header"
-import Footer from "./components/Footer/Footer";
-import PlayArea from "./components/PlayArea/PlayArea";
-import SubHeader from "./components/SubHeader/SubHeader";
-import GameSetup from "./components/GameSetup/GameSetup";
-import PlaySubHeader from "./components/PlaySubHeader/PlaySubHeader";
+import Footer from "./components/Footer/Footer"
+import PlayArea from "./components/PlayArea/PlayArea"
+import SubHeader from "./components/SubHeader/SubHeader"
+import GameSetup from "./components/GameSetup/GameSetup"
+import PlaySubHeader from "./components/PlaySubHeader/PlaySubHeader"
+import EndGame from './components/EndGame/EndGame'
+
 
 function App() {
     const [players, setPlayers] = useState(0)
     const [grid, setGrid] = useState(0)
     const [isGameSet, setIsGameSet] = useState(false)
+    const [gameOver, setGameOver] = useState(true)
     const [gridArray, setGridArray] = useState([])
     const [playerControl, setPlayerControl] = useState([])
     const [currentPlayer, setCurrentPlayer] = useState(0)
@@ -95,6 +98,7 @@ function App() {
                              grid={grid}
                              players={players}
                              setGridArray={setGridArray}/>}
+            {!gameOver ? <EndGame/> : "" }
             <Footer/>
         </>
     )
