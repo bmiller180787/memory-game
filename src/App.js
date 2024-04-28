@@ -8,16 +8,15 @@ import GameSetup from "./components/GameSetup/GameSetup"
 import PlaySubHeader from "./components/PlaySubHeader/PlaySubHeader"
 import EndGame from './components/EndGame/EndGame'
 
-
 function App() {
     const [players, setPlayers] = useState(0)
     const [grid, setGrid] = useState(0)
-    const [isGameSet, setIsGameSet] = useState(false)
     const [gameOver, setGameOver] = useState(true)
     const [gridArray, setGridArray] = useState([])
     const [playerControl, setPlayerControl] = useState([])
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [turnCounter, setTurnCounter] = useState(0)
+    const [isGameSet, setIsGameSet] = useState(false)
 
     function shufflePlayTiles(doublePlayTiles) {
         let a = [...doublePlayTiles]
@@ -35,6 +34,11 @@ function App() {
         }
         return a
     }
+
+    useEffect(() => {
+        setGameOver(false)
+        setCurrentPlayer(1)
+    }, [])
 
     useEffect(() => {
         if (currentPlayer === players) {
@@ -92,13 +96,14 @@ function App() {
                                    playerControl={playerControl}
                                    currentPlayer={currentPlayer}
                                    setTurnCounter={setTurnCounter}
-                                   turnCounter={turnCounter}/>
+                                   turnCounter={turnCounter}
+                                   setGameOver={setGameOver}/>
                 : <GameSetup setPlayers={setPlayers}
                              setGrid={setGrid}
                              grid={grid}
                              players={players}
                              setGridArray={setGridArray}/>}
-            {!gameOver ? <EndGame/> : "" }
+            {gameOver ? <EndGame/> : "" }
             <Footer/>
         </>
     )

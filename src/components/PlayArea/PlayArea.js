@@ -1,7 +1,7 @@
 import "./PlayArea.css"
 import { useEffect, useState, useRef } from "react"
 
-const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, setTurnCounter, turnCounter}) => {
+const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, setTurnCounter, turnCounter, setGameOver}) => {
 
     const classChange = useRef({})
     const currentPlayerIndex = playerControl.findIndex((e) => e.player === currentPlayer)
@@ -19,9 +19,11 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
         }
     }, [matchCheck])
 
-    // useEffect(() => {
-        
-    // }, [matchedTiles])
+    useEffect(() => {
+        if (matchedTiles.length === gridArray.length) {
+            setGameOver(true)
+        }
+    }, [matchedTiles])
 
     function clearVisibleTiles() {
         for (let i = 0; i < matchCheck.length; i++) {
@@ -41,9 +43,9 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
 
     function handleMatch () {
         updatePlayerScore()
-        setMatchedTiles(x => [
-            ...x,
-            ...matchCheck.slice()])
+        const newMatchedTiles = [...matchedTiles]
+        matchCheck.forEach(({ tile }) => newMatchedTiles.push(tile))
+        setMatchedTiles(newMatchedTiles)
         setMatchCheck([])
     }
 
@@ -102,7 +104,7 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
             <div className="playingGrid">
                 {gridArray.map((tile, key) => {
                     return (
-                        <button ref={(e) => (classChange.current[key] = e)} onClick={() => handleClick(tile.value, key)} key={key} className="tile">
+                        <button ref={(e) => (classChange.current[key] = e)} onClick={() => handleClick(tile.value, key)} key={key} className="tile" disabled={matchedTiles.includes(key)}>
                             <p className="tiletext">{tile.name}</p>
                         </button>
                     )
