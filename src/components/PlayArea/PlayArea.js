@@ -14,20 +14,29 @@ const PlayArea = ({gridArray, playerControl, currentPlayer, setPlayerControl, se
             if (checkMatch()) {
                 handleMatch ()
             } else {
-                clearVisibleTiles()
+                handleNoMatch()
             }
         }
     }, [matchCheck])
 
-    useEffect(() => {
+    // useEffect(() => {
         
-    }, [matchedTiles])
+    // }, [matchedTiles])
 
-    function clearVisibleTiles () {
-
-        for (let i = 0; i > matchedTiles; i++) {
-            
+    function clearVisibleTiles() {
+        for (let i = 0; i < matchCheck.length; i++) {
+            const selectedIndex = matchCheck[i].tile
+            const selectedTile = classChange.current[selectedIndex]
+            if (selectedTile.classList.contains("visible")) {
+                selectedTile.classList.remove("visible")
+            }
         }
+    }
+    
+    function handleNoMatch() {
+        setTurnCounter(turnCounter + 1)
+        setTimeout(clearVisibleTiles, 2000)
+        setTimeout(setMatchCheck([]), 2100)
     }
 
     function handleMatch () {
