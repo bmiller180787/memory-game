@@ -13,10 +13,10 @@ function App() {
     const [grid, setGrid] = useState(0)
     const [gameOver, setGameOver] = useState(true)
     const [gridArray, setGridArray] = useState([])
-    const [playerControl, setPlayerControl] = useState([])
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [turnCounter, setTurnCounter] = useState(0)
     const [isGameSet, setIsGameSet] = useState(false)
+    const [playerControl, setPlayerControl] = useState([])
 
     function shufflePlayTiles(doublePlayTiles) {
         let a = [...doublePlayTiles]
@@ -39,6 +39,19 @@ function App() {
         setGameOver(false)
         setCurrentPlayer(1)
     }, [])
+
+    useEffect(() => {
+        if (gameOver) {
+            const highestScore = playerControl.reduce((prev, current) => {
+                if (prev.length === 0 || prev[0].score < current.score) {
+                  return [current];
+                } else if (prev[0].score === current.score) {
+                  prev.push(current)
+                }
+                return prev
+              }, [])
+        }
+    },[gameOver])
 
     useEffect(() => {
         if (currentPlayer === players) {
@@ -103,7 +116,7 @@ function App() {
                              grid={grid}
                              players={players}
                              setGridArray={setGridArray}/>}
-            {gameOver ? <EndGame/> : "" }
+            {gameOver ? <EndGame playerControl={playerControl}/> : "" }
             <Footer/>
         </>
     )

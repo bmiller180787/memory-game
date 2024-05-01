@@ -1,7 +1,11 @@
-const EndGame = () =>{
+const EndGame = ({playerControl}) => {
+
+    console.log(playerControl)
+
     return (
     <>
-        <p>This will be the end game / reset page after someone has won</p>
+    
+        {/* <p>Player {playerControl[0].player} wins</p> */}
     </>
     )
 }
