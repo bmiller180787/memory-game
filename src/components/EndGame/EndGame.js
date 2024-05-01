@@ -1,7 +1,5 @@
 const EndGame = ({playerControl}) => {
 
-    console.log(playerControl)
-
     return (
     <>
     

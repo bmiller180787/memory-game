@@ -17,6 +17,7 @@ function App() {
     const [turnCounter, setTurnCounter] = useState(0)
     const [isGameSet, setIsGameSet] = useState(false)
     const [playerControl, setPlayerControl] = useState([])
+    const [winner, setWinner] = useState([])
 
     function shufflePlayTiles(doublePlayTiles) {
         let a = [...doublePlayTiles]
@@ -42,14 +43,14 @@ function App() {
 
     useEffect(() => {
         if (gameOver) {
-            const highestScore = playerControl.reduce((prev, current) => {
+            setWinner(playerControl.reduce((prev, current) => {
                 if (prev.length === 0 || prev[0].score < current.score) {
-                  return [current];
+                  return [current]
                 } else if (prev[0].score === current.score) {
                   prev.push(current)
                 }
                 return prev
-              }, [])
+              }, []))
         }
     },[gameOver])
 
