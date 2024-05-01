@@ -1,9 +1,9 @@
-const EndGame = ({playerControl}) => {
+const EndGame = ({winner}) => {
 
     return (
     <>
     
-        {/* <p>Player {playerControl[0].player} wins</p> */}
+        <p>Player {winner[0].player} wins with {winner[0].score} points</p>
     </>
     )
 }

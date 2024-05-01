@@ -112,12 +112,12 @@ function App() {
                                    setTurnCounter={setTurnCounter}
                                    turnCounter={turnCounter}
                                    setGameOver={setGameOver}/>
-                : <GameSetup setPlayers={setPlayers}
-                             setGrid={setGrid}
-                             grid={grid}
-                             players={players}
-                             setGridArray={setGridArray}/>}
-            {gameOver ? <EndGame playerControl={playerControl}/> : "" }
+                        : <GameSetup setPlayers={setPlayers}
+                                    setGrid={setGrid}
+                                    grid={grid}
+                                    players={players}
+                                    setGridArray={setGridArray}/>}
+            {gameOver ? <EndGame playerControl={playerControl} winner={winner}/> : "" }
             <Footer/>
         </>
     )
