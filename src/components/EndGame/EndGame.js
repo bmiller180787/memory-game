@@ -1,9 +1,44 @@
-const EndGame = ({winner}) => {
+import { useEffect, useState } from "react"
+
+const EndGame = ({playerControl, gameOver}) => {
+
+    const [winningPlayer , setWinningPlayer] = useState(0)
+    const [winningScore , setWinningScore] = useState(0)
+    console.log("winningPlayer " . winningPlayer)
+    console.log("winningScore " . winningScore)
+
+    const winner = playerControl.reduce((prev, current) => {
+            if (prev.length === 0 || prev[0].score < current.score) {
+              return [current]
+            } else if (prev[0].score === current.score) {
+              prev.push(current)
+            }
+            return prev
+          }, [])
+
+    useEffect(() => {
+        const winner = playerControl.reduce((prev, current) => {
+            if (prev.length === 0 || prev[0].score < current.score) {
+              return [current]
+            } else if (prev[0].score === current.score) {
+              prev.push(current)
+            }
+            return prev
+          }, [])
+
+        setWinningPlayer(winner.player)
+        setWinningScore(winner.score)
+    },[gameOver])
+            
+    
+
+    console.log(winner)
+    console.log(winningPlayer)
+    console.log(winningScore)
 
     return (
     <>
-    
-        <p>Player {winner[0].player} wins with {winner[0].score} points</p>
+        <p>Player {winningPlayer} wins with {winningScore} points</p>
     </>
     )
 }
