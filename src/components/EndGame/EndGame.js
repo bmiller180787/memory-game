@@ -5,8 +5,8 @@ const EndGame = ({playerControl, gameOver}) => {
     const [winningPlayer , setWinningPlayer] = useState(0)
     const [winningScore , setWinningScore] = useState(0)
 
-    useEffect(() => {
-        const winner = playerControl.reduce((prev, current) => {
+    function chooseWinner () {
+       return playerControl.reduce((prev, current) => {
             if (prev.length === 0 || prev[0].score < current.score) {
               return [current]
             } else if (prev[0].score === current.score) {
@@ -14,15 +14,16 @@ const EndGame = ({playerControl, gameOver}) => {
             }
             return prev
           }, [])
+    }
 
-          console.log(winner)
-
-        setWinningPlayer(winner.player)
-        setWinningScore(winner.score)
+    useEffect(() => {
+        chooseWinner()
+        // setWinningPlayer(winner[0].player)
+        // setWinningScore(winner[0].score)
     },[gameOver])
 
-    console.log(winningPlayer)
-    console.log(winningScore)
+    console.log(chooseWinner())
+
 
     return (
     <>

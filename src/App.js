@@ -41,10 +41,6 @@ function App() {
     }, [])
 
     useEffect(() => {
-
-    },[gameOver])
-
-    useEffect(() => {
         if (currentPlayer === players) {
             setCurrentPlayer(1)
         } else {
@@ -107,7 +103,7 @@ function App() {
                                     grid={grid}
                                     players={players}
                                     setGridArray={setGridArray} />}
-            {gameOver ? <EndGame playerControl={playerControl} /> : "" }
+            {gameOver ? <EndGame playerControl={playerControl} gameOver={gameOver} /> : "" }
             <Footer/>
         </>
     )
