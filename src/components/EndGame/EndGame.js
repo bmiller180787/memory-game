@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
+import SetPlayers from "../SetPlayers/SetPlayers"
 
-const EndGame = ({playerControl, gameOver}) => {
+const EndGame = ({playerControl, gameOver, setGrid, setPlayers, setIsGameSet, setTurnCounter, setCurrentPlayer, setGameOver , setPlayerControl}) => {
 
     const [winningPlayer , setWinningPlayer] = useState(0)
     const [winningScore , setWinningScore] = useState(0)
 
     useEffect(() => {
-        console.log(playerControl)
+
     }, [])
 
     async function chooseWinner () {
@@ -19,9 +20,24 @@ const EndGame = ({playerControl, gameOver}) => {
             return prev
           }, [])
 
+        setWinningScore(await winner[0].score)
         setWinningPlayer(await winner[0].player)
-        setWinningPlayer(await winner[0].score)
+    }
 
+    function resetGame () {
+        setGrid(0)
+        setPlayers(0)
+        setIsGameSet(false)
+        setTurnCounter(1)
+        setCurrentPlayer(1)
+        setGameOver(false)
+        setPlayerControl([])
+    }
+
+    function playAgain () {
+        setTurnCounter(1)
+        setCurrentPlayer(1)
+        setGameOver(false)
     }
 
     useEffect(() => {
@@ -32,7 +48,13 @@ const EndGame = ({playerControl, gameOver}) => {
 
     return (
     <>
-        <p>Player {winningPlayer} wins with {winningScore} points</p>
+        <h2 className="subHeaderText">Player {winningPlayer} wins with {winningScore} points</h2>
+        <button onClick={() => playAgain()} className="tile">
+            Play Again
+        </button>
+        <button onClick={() => resetGame()} className="tile">
+            Reset Game
+        </button>
     </>
     )
 }

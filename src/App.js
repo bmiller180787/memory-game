@@ -11,12 +11,12 @@ import EndGame from './components/EndGame/EndGame'
 function App() {
     const [players, setPlayers] = useState(0)
     const [grid, setGrid] = useState(0)
-    const [gameOver, setGameOver] = useState(true)
     const [gridArray, setGridArray] = useState([])
     const [currentPlayer, setCurrentPlayer] = useState(0)
     const [turnCounter, setTurnCounter] = useState(0)
     const [isGameSet, setIsGameSet] = useState(false)
     const [playerControl, setPlayerControl] = useState([])
+    const [gameOver, setGameOver] = useState(true)
 
     function shufflePlayTiles(doublePlayTiles) {
         let a = [...doublePlayTiles]
@@ -103,7 +103,15 @@ function App() {
                                     grid={grid}
                                     players={players}
                                     setGridArray={setGridArray} />}
-            {gameOver ? <EndGame playerControl={playerControl} gameOver={gameOver} /> : "" }
+            {!gameOver ? "" : <EndGame playerControl={playerControl} 
+                                gameOver={gameOver} 
+                                setGrid={setGrid} 
+                                setPlayers={setPlayers} 
+                                setIsGameSet={setIsGameSet} 
+                                setTurnCounter={setTurnCounter} 
+                                setCurrentPlayer={setCurrentPlayer}
+                                setGameOver={setGameOver}
+                                setPlayerControl={setPlayerControl}/> }
             <Footer/>
         </>
     )
