@@ -20,7 +20,7 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
     }, [matchCheck])
 
     useEffect(() => {
-        if (matchedTiles.length === gridArray.length) {
+        if (matchedTiles.length === gridArray.length && matchedTiles.length > 0) {
             setGameOver(true)
         }
     }, [matchedTiles])
@@ -37,8 +37,8 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
     
     function handleNoMatch() {
         setTurnCounter(turnCounter + 1)
-        setTimeout(clearVisibleTiles, 2000)
-        setTimeout(setMatchCheck([]), 2100)
+        setTimeout(clearVisibleTiles, 1500)
+        setTimeout(setMatchCheck([]), 1600)
     }
 
     function handleMatch () {
@@ -104,8 +104,8 @@ const PlayArea = ({gridArray, setPlayerControl, playerControl, currentPlayer, se
             <div className="playingGrid">
                 {gridArray.map((tile, key) => {
                     return (
-                        <button ref={(e) => (classChange.current[key] = e)} onClick={() => handleClick(tile.value, key)} key={key} className="tile" disabled={matchedTiles.includes(key)}>
-                            <p className="tiletext">{tile.name}</p>
+                        <button ref={(e) => (classChange.current[key] = e)} onClick={() => handleClick(tile.id, key)} key={key} className="tile" disabled={matchedTiles.includes(key)}>
+                            <img src={tile.download_url} className="tileimage"/>
                         </button>
                     )
                 })}

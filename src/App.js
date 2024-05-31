@@ -7,7 +7,6 @@ import SubHeader from "./components/SubHeader/SubHeader"
 import GameSetup from "./components/GameSetup/GameSetup"
 import PlaySubHeader from "./components/PlaySubHeader/PlaySubHeader"
 import EndGame from './components/EndGame/EndGame'
-import BlankScreen from './components/BlankScreen/BlankScreen';
 
 function App() {
     const [players, setPlayers] = useState(0)
@@ -17,7 +16,7 @@ function App() {
     const [turnCounter, setTurnCounter] = useState(0)
     const [isGameSet, setIsGameSet] = useState(false)
     const [playerControl, setPlayerControl] = useState([])
-    const [gameOver, setGameOver] = useState(true)
+    const [gameOver, setGameOver] = useState(false)
 
     function shufflePlayTiles(doublePlayTiles) {
         let a = [...doublePlayTiles]
@@ -66,26 +65,13 @@ function App() {
     }, [players])
 
     useEffect(() => {
-        const playTiles = [
-            {name: 1, value: 1},
-            {name: 2, value: 2},
-            {name: 3, value: 3},
-            {name: 4, value: 4},
-            {name: 5, value: 5},
-            {name: 6, value: 6},
-            {name: 7, value: 7},
-            {name: 8, value: 8},
-            {name: 9, value: 9},
-            {name: 10, value: 10},
-            {name: 11, value: 11},
-            {name: 12, value: 12},
-            {name: 13, value: 13},
-            {name: 14, value: 14},
-            {name: 15, value: 15},
-        ]
-        const tilesToBeUsed = playTiles.slice(0, grid / 2)
-        const doublePlayTiles = tilesToBeUsed.concat(tilesToBeUsed)
-        setGridArray(shufflePlayTiles(doublePlayTiles))
+        fetch("https://picsum.photos/v2/list?page=2&limit=50")
+            .then((res) => res.json())
+            .then((res) => {
+                const tilesToBeUsed = res.slice(0, grid / 2)
+                const doublePlayTiles = tilesToBeUsed.concat(tilesToBeUsed)
+                setGridArray(shufflePlayTiles(doublePlayTiles))
+            })
     }, [grid, gameOver])
 
     return (
@@ -104,7 +90,7 @@ function App() {
                                     grid={grid}
                                     players={players}
                                     setGridArray={setGridArray} />}
-            {!gameOver ? <BlankScreen /> : <EndGame playerControl={playerControl} 
+            {!gameOver ? "" : <EndGame playerControl={playerControl} 
                                 gameOver={gameOver} 
                                 setGrid={setGrid} 
                                 setPlayers={setPlayers} 
