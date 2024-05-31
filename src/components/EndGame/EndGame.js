@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import "./EndGame.css"
 
 
-const EndGame = ({playerControl, gameOver, setGrid, grid, setPlayers, setIsGameSet, setTurnCounter, setCurrentPlayer, setGameOver, setPlayerControl}) => {
+const EndGame = ({playerControl, gameOver, setGrid, setPlayers, setIsGameSet, setTurnCounter, setCurrentPlayer, setGameOver, setPlayerControl}) => {
 
     const [winningPlayer , setWinningPlayer] = useState(0)
     const [winningScore , setWinningScore] = useState(0)
@@ -26,7 +26,7 @@ const EndGame = ({playerControl, gameOver, setGrid, grid, setPlayers, setIsGameS
         setPlayers(0)
         setIsGameSet(false)
         setTurnCounter(1)
-        setCurrentPlayer(1)
+        setCurrentPlayer(0)
         setGameOver(false)
         setPlayerControl([])
     }
