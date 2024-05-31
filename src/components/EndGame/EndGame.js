@@ -7,12 +7,6 @@ const EndGame = ({playerControl, gameOver, setGrid, grid, setPlayers, setIsGameS
     const [winningPlayer , setWinningPlayer] = useState(0)
     const [winningScore , setWinningScore] = useState(0)
 
-    async function resetArray () {
-        const currentGrid = grid
-        await setGrid(0)
-        setGrid(currentGrid)
-    }
-
     async function chooseWinner () {
        const winner = playerControl.reduce((prev, current) => {
             if (prev.length === 0 || prev[0].score < current.score) {
