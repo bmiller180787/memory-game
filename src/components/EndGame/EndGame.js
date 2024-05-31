@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react"
-import SetPlayers from "../SetPlayers/SetPlayers"
+import "./EndGame.css"
 
-const EndGame = ({playerControl, gameOver, setGrid, setPlayers, setIsGameSet, setTurnCounter, setCurrentPlayer, setGameOver , setPlayerControl}) => {
+
+const EndGame = ({playerControl, gameOver, setGrid, grid, setPlayers, setIsGameSet, setTurnCounter, setCurrentPlayer, setGameOver, setPlayerControl}) => {
 
     const [winningPlayer , setWinningPlayer] = useState(0)
     const [winningScore , setWinningScore] = useState(0)
 
-    useEffect(() => {
-
-    }, [])
+    async function resetArray () {
+        const currentGrid = grid
+        await setGrid(0)
+        setGrid(currentGrid)
+    }
 
     async function chooseWinner () {
        const winner = playerControl.reduce((prev, current) => {
@@ -34,11 +37,12 @@ const EndGame = ({playerControl, gameOver, setGrid, setPlayers, setIsGameSet, se
         setPlayerControl([])
     }
 
-    function playAgain () {
-        setTurnCounter(1)
-        setCurrentPlayer(1)
-        setGameOver(false)
-    }
+    // function playAgain () {
+    //     resetArray()
+    //     setTurnCounter(1)
+    //     setCurrentPlayer(0)
+    //     setGameOver(false)
+    // }
 
     useEffect(() => {
         if (gameOver) {
@@ -47,15 +51,17 @@ const EndGame = ({playerControl, gameOver, setGrid, setPlayers, setIsGameSet, se
         },[gameOver])
 
     return (
-    <>
-        <h2 className="subHeaderText">Player {winningPlayer} wins with {winningScore} points</h2>
-        <button onClick={() => playAgain()} className="tile">
-            Play Again
-        </button>
-        <button onClick={() => resetGame()} className="tile">
-            Reset Game
-        </button>
-    </>
+    <div className="endgamemodalbackground">
+        <div className="endgamemodal">
+            <h2 className="subHeaderText">Player {winningPlayer} wins with {winningScore} points</h2>
+            {/* <button onClick={() => playAgain()} className="tile">
+                Play Again
+            </button> */}
+            <button onClick={() => resetGame()} className="tile">
+                Reset Game
+            </button>
+        </div>
+    </div>
     )
 }
 

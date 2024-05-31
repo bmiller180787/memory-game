@@ -85,7 +85,7 @@ function App() {
         const tilesToBeUsed = playTiles.slice(0, grid / 2)
         const doublePlayTiles = tilesToBeUsed.concat(tilesToBeUsed)
         setGridArray(shufflePlayTiles(doublePlayTiles))
-    }, [grid])
+    }, [grid, gameOver])
 
     return (
         <>
