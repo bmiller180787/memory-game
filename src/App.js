@@ -7,6 +7,7 @@ import SubHeader from "./components/SubHeader/SubHeader"
 import GameSetup from "./components/GameSetup/GameSetup"
 import PlaySubHeader from "./components/PlaySubHeader/PlaySubHeader"
 import EndGame from './components/EndGame/EndGame'
+import BlankScreen from './components/BlankScreen/BlankScreen';
 
 function App() {
     const [players, setPlayers] = useState(0)
@@ -103,7 +104,7 @@ function App() {
                                     grid={grid}
                                     players={players}
                                     setGridArray={setGridArray} />}
-            {!gameOver ? "" : <EndGame playerControl={playerControl} 
+            {!gameOver ? <BlankScreen /> : <EndGame playerControl={playerControl} 
                                 gameOver={gameOver} 
                                 setGrid={setGrid} 
                                 setPlayers={setPlayers} 

@@ -17,7 +17,6 @@ img {
 .tile {
     width: 50%;
     cursor: pointer;
-    border: red solid 2px;
     margin: auto;
     height: 5rem;
     width: 5rem;

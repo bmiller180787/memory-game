@@ -37,15 +37,8 @@ const EndGame = ({playerControl, gameOver, setGrid, grid, setPlayers, setIsGameS
         setPlayerControl([])
     }
 
-    // function playAgain () {
-    //     resetArray()
-    //     setTurnCounter(1)
-    //     setCurrentPlayer(0)
-    //     setGameOver(false)
-    // }
-
     useEffect(() => {
-        if (gameOver) {
+        if (gameOver && playerControl.length > 0) {
             chooseWinner()
         }
         },[gameOver])
@@ -54,9 +47,6 @@ const EndGame = ({playerControl, gameOver, setGrid, grid, setPlayers, setIsGameS
     <div className="endgamemodalbackground">
         <div className="endgamemodal">
             <h2 className="subHeaderText">Player {winningPlayer} wins with {winningScore} points</h2>
-            {/* <button onClick={() => playAgain()} className="tile">
-                Play Again
-            </button> */}
             <button onClick={() => resetGame()} className="tile">
                 Reset Game
             </button>
