@@ -37,7 +37,7 @@ function App() {
 
     useEffect(() => {
         setGameOver(false)
-        setCurrentPlayer(1)
+        setCurrentPlayer(0)
     }, [])
 
     useEffect(() => {
@@ -72,7 +72,7 @@ function App() {
                 const doublePlayTiles = tilesToBeUsed.concat(tilesToBeUsed)
                 setGridArray(shufflePlayTiles(doublePlayTiles))
             })
-    }, [grid, gameOver])
+    }, [grid])
 
     return (
         <>
