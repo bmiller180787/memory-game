@@ -11,5 +11,5 @@ The game is automatically generates depending on the selections on the opening p
 This is under the condition that an even amount of tiles is selected as the user will always need to find a matching pair to end the game.
 
 Future tasks include:
-* adding another selection screen to determain the images that are displayed on the tiles. i.e. the theme.
+* adding another selection screen to determine the images that are displayed on the tiles. i.e. the theme.
 * giving the players the option of entering their name so that their names are displayed instead of the default "Player 1", "Player 2" etc.
